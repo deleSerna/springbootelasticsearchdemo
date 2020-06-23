@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springdemo
+  labels:
+    app: springdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springdemo
+  template:
+    metadata:
+      labels:
+        app: springdemo
+    spec:
+      containers:
+        - name: springdemo
+          image: springdemo:latest
+          imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springdemo
+  labels:
+    app: springdemo
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  type: NodePort
+
+  selector:
+    app: springdemo          
