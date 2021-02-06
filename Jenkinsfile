@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
                       tools {
-                        jdk "jdk-12.0.2"
+                        jdk "jdk-11"
                       }
                        steps {
                 sh './mvnw build'
